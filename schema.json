@@ -1,87 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json",
-  "title": "Iride STAC Extension",
-  "description": "An extension defining additional metadata fields for STAC items for the Italian IRIDE space mission",
   "type": "object",
-  "required": ["stac_extensions"],
   "properties": {
-    "stac_extensions": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "contains": {
-        "const": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json"
-      }
-    }
-  },
-  "allOf": [
-    {
-      "$comment": "This is the schema for STAC Items.",
-      "type": "object",
-      "required": ["type", "properties", "assets"],
-      "properties": {
-        "type": {
-          "const": "Feature"
-        },
-        "properties": {
-          "type": "object",
-          "properties": {
-            "iride:acquisition_id": {
-              "type": "string",
-              "description": "Unique identifier of the acquisition assigned by the CMP to a datatake within the request"
-            },
-			"iride:night_flag": {
-              "type": "boolean",
-              "description": "True indicates nighttime observation"
-            },
-		    "iride:instrument_mode": {
-              "type": "string",
-              "description": "Specifies the instrument mode for Optical (Multispectral/Hyperspectral) acquisitions.",
-			  "examples": ["SP", "ST", "SN"]
-            },
-			"iride:imaging_mode": {
-              "type": "string",
-              "description": "Specifies the imaging configuration",
-              "examples": ["nominal", "mosaic", "n-stereo"]
-			},
-			"iride:observation_direction": {
-              "type": "string",
-              "description": "Direction of observation (e.g., 'left', 'right') for Optical (Multispectral/Hyperspectral) acquisitions.",
-             "enum": ["left", "right"]
-		    },
-		    "iride:frame_position": {
-			  "type": "integer",
-		      "description": "Position of the scene frame relative to the total number of frames in the parent datatake.",
-              "minimum": 1
-            },
-            "iride:number_of_frames": {
-              "type": "integer",
-		      "description": "Total number of frames (nominal scene size) in the parent datatake (typically a strip).",
-              "minimum": 1
-            },
-			"iride:acquisition_subtype": {
-              "type": "string",
-              "description": "Enriches the acquisition classification (e.g., the type of calibration acquisition)",
-              "examples": ["nominal", "vicarious", "moon", "dark", "deep", "night"]
-			},
-			"iride:calval_flag": {
-              "type": "string",
-              "description": "Unique identifier of the CalVal flag used in the IPS"
-            },
-            "iride:orbit_determination": {
-              "type": "string",
-              "description": "Type (or configuration) of orbital data (e.g., Downlinked, Filtered)",
-              "enum": ["downlinked", "filtered"]
-            }
-		  }
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": true
-        }
-      }
-    }
-  ]
+    "iride:acquisition_id": { "type": "string" },
+    "iride:night_flag": { "type": "boolean" }
+  }
 }
