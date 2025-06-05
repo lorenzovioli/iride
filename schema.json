@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "C:\\STAC_custom_extension\\iride-schema.json",
+  "$id": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json",
   "title": "Iride STAC Extension",
   "description": "An extension defining additional metadata fields for STAC items for the Italian IRIDE space mission",
   "type": "object",
