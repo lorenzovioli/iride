@@ -12,7 +12,7 @@
         "type": "string"
       },
       "contains": {
-        "const": "C:\\STAC_custom_extension\\iride-schema.json"
+        "const": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json"
       }
     }
   },
