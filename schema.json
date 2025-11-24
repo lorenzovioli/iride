@@ -1,28 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json",
-  "title": "Iride STAC Extension",
+  "title": "IRIDE Extension",
   "description": "An extension defining additional metadata fields for STAC items for the Italian IRIDE space mission",
   "type": "object",
-  "required": [
-    "stac_extensions"
-  ],
-  "properties": {
-    "stac_extensions": {
-      "type": "array",
-      "contains": {
-        "const": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json"
-      }
-    }
-  },
   "allOf": [
     {
       "$comment": "This is the schema for STAC Items.",
       "type": "object",
       "required": [
         "type",
-        "properties",
-        "assets"
+        "properties"
       ],
       "properties": {
         "type": {
@@ -100,10 +88,6 @@
               ]
             }
           }
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": true
         }
       }
     }
