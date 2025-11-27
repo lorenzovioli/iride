@@ -1,26 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/lorenzovioli/iride/main/schema.json",
-  "title": "Iride STAC Extension",
+  "title": "IRIDE Extension",
   "description": "An extension defining additional metadata fields for STAC items for the Italian IRIDE space mission",
   "type": "object",
-  "required": ["stac_extensions"],
-  "properties": {
-    "stac_extensions": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "contains": {
-        "const": "C:\\STAC_custom_extension\\iride-schema.json"
-      }
-    }
-  },
   "allOf": [
     {
       "$comment": "This is the schema for STAC Items.",
       "type": "object",
-      "required": ["type", "properties", "assets"],
+      "required": ["type", "properties"],
       "properties": {
         "type": {
           "const": "Feature"
@@ -28,97 +16,54 @@
         "properties": {
           "type": "object",
           "properties": {
-            "iride:night_flag": {
-              "type": "boolean",
-			  "title": "Night flag", 
-              "description": "True indicates nighttime observation"
-            },
             "iride:acquisition_id": {
               "type": "string",
-			  "title": "Aquisition ID",
               "description": "Unique identifier of the acquisition assigned by the CMP to a datatake within the request"
             },
-		    "iride:instrument_mode": {
-              "type": "string",
-			  "title": "Instrument mode",
-              "description": "Specifies the instrument mode for Optical (Multispectral/Hyperspectral) acquisitions.",
-			  "examples": ["SP", "ST", "SNAP", "TDI"]
+            "iride:night_flag": {
+              "type": "boolean",
+              "description": "True indicates nighttime observation"
             },
-			"iride:imaging_mode": {
+            "iride:instrument_mode": {
               "type": "string",
-			  "title": "Imaging mode",
+              "description": "Specifies the instrument mode for Optical (Multispectral/Hyperspectral) acquisitions.",
+              "examples": ["SP", "ST", "SN"]
+            },
+            "iride:imaging_mode": {
+              "type": "string",
               "description": "Specifies the imaging configuration",
               "examples": ["nominal", "mosaic", "n-stereo"]
-			},
-			"iride:observation_direction": {
+            },
+            "iride:observation_direction": {
               "type": "string",
-			  "title": "Observation direction",
               "description": "Direction of observation (e.g., 'left', 'right') for Optical (Multispectral/Hyperspectral) acquisitions.",
-             "enum": ["left", "right"]
-		    },
-		    "iride:frame_position": {
-			  "type": "integer",
-			  "title": "Frame position",
-		      "description": "Position of the scene frame relative to the total number of frames in the parent datatake.",
+              "enum": ["left", "right"]
+            },
+            "iride:frame_position": {
+              "type": "integer",
+              "description": "Position of the scene frame relative to the total number of frames in the parent datatake.",
               "minimum": 1
             },
             "iride:number_of_frames": {
               "type": "integer",
-			  "title": "Number of frames",
-		      "description": "Total number of frames (nominal scene size) in the parent datatake (typically a strip).",
+              "description": "Total number of frames (nominal scene size) in the parent datatake (typically a strip).",
               "minimum": 1
             },
-			"iride:acquisition_subtype": {
+            "iride:acquisition_subtype": {
               "type": "string",
-			  "title": "Aquisition subtype",
               "description": "Enriches the acquisition classification (e.g., the type of calibration acquisition)",
               "examples": ["nominal", "vicarious", "moon", "dark", "deep", "night"]
-			},
-			"iride:calval_flag": {
+            },
+            "iride:calval_flag": {
               "type": "string",
-			  "title": "CAL/VAL flag",
               "description": "Unique identifier of the CalVal flag used in the IPS"
             },
             "iride:orbit_determination": {
               "type": "string",
-			  "title": "Orbit determination",
               "description": "Type (or configuration) of orbital data (e.g., Downlinked, Filtered)",
               "enum": ["downlinked", "filtered"]
-            },		
-			"iride:gcp_refinement": {
-			  "type": "boolean",
-			  "title": "GCP refinement",
-			  "description": "Indicates whether geometric refinement using Ground Control Points (GCP) has been applied. True indicates the application of GCP refinement."
-			},
-			"iride:number_of_valid_gcp": {
-			  "type": "integer",
-			  "title": "Number of valid GCP",
-			  "description": "Number of valid Ground Control Points (GCP) used for geometric refinement.",
-			  "minimum": 0
-			},
-			"iride:rms_gcp_displacement_alt": {
-			  "type": "number",
-			  "title": "RMS Displacement (ALT Axis)",
-			  "description": "Root Mean Square (RMS) displacement of GCPs along-track axis, expressed in meters.",
-			  "minimum": 0
-			},
-			"iride:rms_gcp_displacement_act": {
-			  "type": "number",
-			  "title": "RMS Displacement (ACT Axis)",
-			  "description": "Root Mean Square (RMS) displacement of GCPs across-track axis, expressed in meters.",
-			  "minimum": 0
-			},
-			"iride:coregistration_method": {
-			  "type": "string",
-			  "title": "Coregistration method",
-			  "description": "Algorithm or approach used to perform band image coregistration between datasets.",
-			  "examples": ["Rigorous Coregistration", "Mutual Information"]
-			}
-		  }
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": true
+            }
+          }
         }
       }
     }
